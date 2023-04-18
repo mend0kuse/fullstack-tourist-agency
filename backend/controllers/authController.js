@@ -39,6 +39,15 @@ class AuthController {
 			res.status(400).json({ message: 'Login Error' })
 		}
 	}
+	async userInfo(req, res) {
+		try {
+			const user = await User.findOne({ username: req.params.username }, { password: 0 })
+
+			return user
+		} catch (error) {
+			console.log(e);
+		}
+	}
 }
 
 export const authController = new AuthController()
