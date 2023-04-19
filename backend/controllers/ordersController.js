@@ -19,9 +19,11 @@ class OrderController {
 	async createOrder(req, res) {
 		try {
 			const user = await User.findById({ _id: req.body.userId })
-			const tour = await Tour.findById({ _id: req.body.tourId })
 
-			const order = await Order.create({ userId: user, tourId: tour, price: req.body.price });
+			const tourrr = await Tour.findById({ _id: req.body.tourId })
+			const tour = await Tour.findByIdAndUpdate({ _id: req.body.tourId }, { $set: { busySeats: tourrr.busySeats + req.body.seats } })
+
+			const order = await Order.create({ user: user, tour: tour, price: req.body.price, countPeoples: req.body.seats });
 
 			res.status(201).json(order);
 		} catch (e) {
@@ -55,4 +57,4 @@ class OrderController {
 	}
 }
 
-export const ordersController =  new OrderController()
+export const ordersController = new OrderController()

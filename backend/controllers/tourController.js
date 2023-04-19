@@ -13,7 +13,7 @@ class TourController {
 	}
 	async createTour(req, res) {
 		try {
-			await Tour.create({ ...req.body.newTour })
+			await Tour.create({ busySeats: 0, ...req.body })
 			const tours = await Tour.find()
 			res.status(201).json(tours);
 		} catch (e) {

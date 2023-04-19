@@ -2,27 +2,27 @@ import mongoose from 'mongoose';
 import { Schema } from 'mongoose';
 
 const OrderSchema = new mongoose.Schema({
-	tourId: {
+	tour: {
 		type: Schema.Types.ObjectId,
 		ref: 'Tour'
 	},
-	userId: {
+	user: {
 		type: Schema.Types.ObjectId,
 		ref: 'User'
-	}
-	,
+	},
+	countPeoples:{type: Number},
 	price: { type: Number, required: true },
 }, { timestamps: true });
 
 OrderSchema.virtual('virtualTour', {
 	ref: 'Tour',
-	localField: 'tourId',
+	localField: 'tour',
 	foreignField: '_id',
 });
 
 OrderSchema.virtual('virtualUser', {
 	ref: 'User',
-	localField: 'userId',
+	localField: 'user',
 	foreignField: '_id',
 });
 
