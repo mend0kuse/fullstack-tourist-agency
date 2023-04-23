@@ -4,7 +4,7 @@ import { Order } from '../types/Order'
 export interface OrderPostProps {
 	userId?: string;
 	tourId?: string;
-	price: string;
+	price?: string;
 	seats: number
 }
 
@@ -18,6 +18,11 @@ class OrderApi {
 	}
 	async getOrders() {
 		const { data } = await axios.get<Order[]>('http://localhost:5000/orders')
+		return data
+	}
+
+	async getOrdersByUserId(userId?: string) {
+		const { data } = await axios.get<Order[]>('http://localhost:5000/orders/user/' + userId)
 		return data
 	}
 }

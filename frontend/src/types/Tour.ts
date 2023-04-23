@@ -8,4 +8,6 @@ export interface Tour {
 	busySeats?: string;
 	allSeats: string;
 	team: string[];
+	mainImg: string;
+	sliderImgs: string[];
 }

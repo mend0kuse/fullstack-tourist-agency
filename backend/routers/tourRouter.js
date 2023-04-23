@@ -10,4 +10,7 @@ tourRouter.post('/', tourController.createTour);
 
 tourRouter.delete('/:id', tourController.deleteById);
 
+tourRouter.get('/:id', tourController.getById);
+
+
 

@@ -34,11 +34,12 @@ class OrderController {
 
 	async getByUserId(req, res) {
 		try {
-			const orders = await Order.find({ userId: req.params.id })
-				.populate({ path: 'virtualTour' })
-				.populate({ path: 'virtualUser' });
-
-			return res.status(200).json(orders);
+			if (req.params.id !== 'undefined') {
+				const orders = await Order.find({ userId: req.params.id })
+					.populate({ path: 'virtualTour' })
+					.populate({ path: 'virtualUser' });
+				return res.status(200).json(orders);
+			}
 		} catch (e) {
 			console.log(e);
 			res.status(500).json(e);

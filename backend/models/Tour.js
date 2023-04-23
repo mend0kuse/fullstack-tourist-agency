@@ -9,6 +9,8 @@ const TourSchema = new mongoose.Schema({
 	busySeats: { type: Number, required: true },
 	allSeats: { type: Number, required: true },
 	team: [{ type: String, required: true }],
+	mainImg: { type: String, required: true },
+	sliderImgs: [{ type: String, required: true }],
 }, { timestamps: true });
 
 export const Tour = mongoose.model('Tour', TourSchema)

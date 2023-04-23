@@ -18,5 +18,5 @@ interface UserContextProviderProps {
 export const UserContextProvider: FC<UserContextProviderProps> = ({ children }) => {
 	const [user, setUser] = useState<User>({ password: "", username: '' });
 
-	return <UserContext.Provider value={{ user, setUser }}> {children} </UserContext.Provider>
+	return <UserContext.Provider value={{ user, setUser }}> {children} 	</UserContext.Provider>
 };

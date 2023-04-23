@@ -8,6 +8,12 @@ class TourApi {
 	}
 	async getTours() {
 		const { data } = await axios.get<Tour[]>('http://localhost:5000/tours')
+		
+		return data
+	}
+
+	async getTour(id?: string) {
+		const { data } = await axios.get<Tour>('http://localhost:5000/tours/' + id)
 		return data
 	}
 }
