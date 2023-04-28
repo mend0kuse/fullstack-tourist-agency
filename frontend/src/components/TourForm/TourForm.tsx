@@ -55,6 +55,7 @@ export const TourForm: FC<TourFormProps> = (props) => {
 
 	const mutation = useMutation(tourApi.createTour, {
 		onSuccess: (res) => {
+			//@ts-ignore
 			queryClient.invalidateQueries('tours')
 			res._id && router(res._id)
 		},

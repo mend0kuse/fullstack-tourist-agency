@@ -23,6 +23,7 @@ export const TourPage: FC<TourPageProps> = (props) => {
 
 	const createOrder = useMutation(orderApi.createOrder, {
 		onSuccess: (res) => {
+			//@ts-ignore
 			queryClient.invalidateQueries('orders')
 			alert('Успешно')
 		},
