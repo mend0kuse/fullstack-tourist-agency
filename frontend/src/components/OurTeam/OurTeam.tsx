@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { SectionTitle } from '../../shared/ui/SectionTitle/SectionTitle';
 import Slider from '../../shared/ui/Slider/Slider';
 import styles from './OurTeam.module.scss'
-import { TeamCard } from './TeamCard';
+import { TeamCard } from '../TeamCard/TeamCard';
 
 import Dmitryi from '../../shared/assets/Dmitryi.png'
 import Ivan from '../../shared/assets/Ivan.png'
@@ -47,7 +47,8 @@ export const OurTeam: FC<OurTeamProps> = (props) => {
 				init={false}
 				config={sliderConfig}
 				withNav
-				space-between={30}
+				topNav
+				space-between={127}
 				slides-per-view={3}
 				slides={[
 					<TeamCard img={Dmitryi} job='Гид, инструктор' name='Дмитрий' />,

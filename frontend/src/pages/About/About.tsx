@@ -2,7 +2,7 @@ import { FC } from 'react';
 import cn from 'classnames';
 import styles from './About.module.scss'
 import { Layout } from '../../components/Layout/Layout';
-import { SectionTitle } from '../../shared/ui/SectionTitle/SectionTitle';
+import { SectionTitle, SectionTitleAlign } from '../../shared/ui/SectionTitle/SectionTitle';
 import { AboutBlock } from '../../components/AboutBlock/AboutBlock';
 
 import Japan from '../../shared/assets/Japan.png';
@@ -17,7 +17,7 @@ interface AboutProps { }
 
 export const About: FC<AboutProps> = () => {
 	return (
-		<Layout>
+		<Layout staticHeader>
 			<div className={cn(styles.About)}>
 				<SectionTitle text='О нас' />
 				<div className={styles.inner}>

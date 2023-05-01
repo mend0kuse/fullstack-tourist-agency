@@ -20,7 +20,7 @@ export const Registration: FC<RegistrationProps> = (props) => {
 
 	const mutation = useMutation(authApi.registration, {
 		onSuccess: setLogin,
-		onError: () => alert('Что-то пошло не так')
+		onError: () => alert('Пользователь с таким ником уже существует')
 	})
 
 	return (

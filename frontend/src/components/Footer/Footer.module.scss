@@ -1,13 +1,15 @@
 .inner {
 	padding: 24px 0 64px;
 	margin: 0 auto;
-	border-top: 3px solid #FFFFFF;
+	border-top: 3px solid #ffffff;
 	max-width: 1200px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 }
-
+.Footer {
+	margin-top: 50px;
+}
 .links {
 	display: flex;
 	column-gap: 90px;

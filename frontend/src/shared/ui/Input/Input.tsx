@@ -1,6 +1,6 @@
 import cn from 'classnames';
 
-import { type FC, type InputHTMLAttributes, memo, useState } from 'react';
+import { type FC, type InputHTMLAttributes, useState, Dispatch, SetStateAction, forwardRef } from 'react';
 
 import styles from './Input.module.scss';
 
@@ -9,10 +9,12 @@ type HtmlInput = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange
 interface InputProps extends HtmlInput {
 	value?: string | number;
 	placeholder?: string | null;
-	onChange?: (value: string) => void;
+	onChange?: Dispatch<SetStateAction<any>>;
 }
 
-export const Input: FC<InputProps> = memo((props) => {
+type Ref = HTMLInputElement;
+
+export const Input: FC<InputProps> = forwardRef<Ref, InputProps>((props, ref) => {
 	const { value, placeholder, readOnly, className, type = 'text', onChange, ...otherProps } = props;
 
 	const [upper, setUpper] = useState(Boolean(value));
@@ -32,6 +34,7 @@ export const Input: FC<InputProps> = memo((props) => {
 			<input
 				className={cn(styles.Input, {}, className)}
 				autoComplete="new-password"
+				ref={ref}
 				type={type}
 				value={value}
 				readOnly={readOnly}

@@ -6,6 +6,7 @@ interface SectionTitleProps {
 	className?: string
 	text: string
 	align?: SectionTitleAlign
+	withoutMargin?: boolean
 }
 
 export enum SectionTitleAlign {
@@ -14,9 +15,9 @@ export enum SectionTitleAlign {
 }
 
 export const SectionTitle: FC<SectionTitleProps> = (props) => {
-	const { className, text, align = SectionTitleAlign.LEFT } = props
+	const { className, text, align = SectionTitleAlign.LEFT, withoutMargin = false } = props
 	return (
-		<h2 className={cn(styles.SectionTitle, className, styles[align])}>
+		<h2 className={cn(styles.SectionTitle, className, styles[align], { [styles.withoutMargin]: withoutMargin })}>
 			{text}
 		</h2>
 	);

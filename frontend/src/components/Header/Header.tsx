@@ -9,9 +9,10 @@ import { UserContext } from '../../context/UserContext';
 
 
 
-interface HeaderProps { }
+interface HeaderProps { staticPos?: boolean }
 
-export const Header: FC<HeaderProps> = () => {
+export const Header: FC<HeaderProps> = (props) => {
+	const { staticPos } = props
 	const [open, setOpen] = useState(false)
 
 	const { user } = useContext(UserContext)
@@ -27,7 +28,7 @@ export const Header: FC<HeaderProps> = () => {
 
 	return (
 		<>
-			<div className={cn(styles.Header)}>
+			<div className={cn(styles.Header, { [styles.static]: staticPos })}>
 				<div className={cn(styles.inner)}>
 					<Link to={'/'} className={cn(styles.logo, styles.link)}>Kulltura</Link>
 					<div className={styles.links}>

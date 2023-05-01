@@ -1,10 +1,8 @@
-.ToggleTextBlock {
-	padding: 20px 20px 20px 0;
-	border-top: 3px solid var(--primary-color);
-}
 .title {
 	background: none;
 	color: white;
+	border-top: 3px solid var(--primary-color);
+	padding: 20px 20px 20px 0;
 	font-weight: 700;
 	width: 100%;
 	font-size: 24px;
@@ -17,4 +15,5 @@
 	}
 }
 .text {
+	margin-bottom: 20px;
 }

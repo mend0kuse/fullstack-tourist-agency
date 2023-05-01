@@ -4,7 +4,7 @@ class AuthController {
 	async registration(req, res) {
 		try {
 			const { username } = req.body
-			const candidate = await User.findOne({ username })
+			const candidate = await User.findOne({ username: username })
 
 			if (candidate) {
 				return res.status(400).json({ message: "Пользователь с таким именем уже сущестует" })

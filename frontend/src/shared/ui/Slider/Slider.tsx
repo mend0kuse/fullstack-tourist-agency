@@ -1,6 +1,6 @@
 import Swiper, { SwiperOptions } from 'swiper';
 import { register } from 'swiper/element/bundle';
-
+import cn from 'classnames'
 import { FC, ReactNode, useEffect, useRef } from 'react';
 
 import { ReactComponent as ArrowSvg } from '../../assets/icons/arrow.svg';
@@ -11,6 +11,8 @@ interface SliderProps extends JSX.SwiperContainerAttributes {
 	slides?: ReactNode[];
 	config?: SwiperOptions;
 	withNav?: boolean;
+	onChange?: (ind: number) => void;
+	topNav?: boolean;
 }
 
 register();
@@ -18,7 +20,7 @@ register();
 type SwiperRef = HTMLElement & { swiper: Swiper; initialize: () => void };
 
 const Slider: FC<SliderProps> = (props) => {
-	const { slides, config, withNav, ...otherProps } = props;
+	const { slides, topNav = false, onChange, config, withNav, ...otherProps } = props;
 
 	const swiperElRef = useRef<SwiperRef>();
 	const prevRef = useRef<HTMLButtonElement>(null);
@@ -27,6 +29,12 @@ const Slider: FC<SliderProps> = (props) => {
 	useEffect(() => {
 		if (swiperElRef.current) {
 			Object.assign(swiperElRef.current, config);
+
+			const onChangeHandler = (event: any) => {
+				onChange?.(event.detail[0].activeIndex)
+			}
+
+			swiperElRef.current.addEventListener('slidechange', onChangeHandler);
 
 			if (withNav) {
 				const conf: SwiperOptions = {
@@ -51,7 +59,7 @@ const Slider: FC<SliderProps> = (props) => {
 				))}
 			</swiper-container>
 			{withNav && (
-				<div className={styles.btns}>
+				<div className={cn(styles.btns, { [styles.topNav]: topNav })}>
 					<button className={styles.prev} ref={prevRef}>
 						<ArrowSvg />
 					</button>
@@ -59,8 +67,9 @@ const Slider: FC<SliderProps> = (props) => {
 						<ArrowSvg />
 					</button>
 				</div>
-			)}
-		</div>
+			)
+			}
+		</div >
 	);
 };
 export default Slider;

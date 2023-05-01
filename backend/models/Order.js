@@ -10,7 +10,10 @@ const OrderSchema = new mongoose.Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'User'
 	},
-	countPeoples:{type: Number},
+	countPeoples:{type: Number, required: true },
+	status:{type: String, required: true },
+	fio:{type: String, required: true },
+	mail:{type: String, required: true },
 	price: { type: Number, required: true },
 }, { timestamps: true });
 

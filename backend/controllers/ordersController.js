@@ -23,7 +23,18 @@ class OrderController {
 			const tourrr = await Tour.findById({ _id: req.body.tourId })
 			const tour = await Tour.findByIdAndUpdate({ _id: req.body.tourId }, { $set: { busySeats: tourrr.busySeats + req.body.seats } })
 
-			const order = await Order.create({ user: user, tour: tour, price: req.body.price, countPeoples: req.body.seats });
+			const order = await Order.create({ user: user, tour: tour, countPeoples: req.body.seats, status: 'На рассмотрении', ...req.body });
+
+			res.status(201).json(order);
+		} catch (e) {
+			console.log(e);
+			res.status(500).json(e);
+		}
+	}
+
+	async confirmOrder(req, res) {
+		try {
+			const order = await Order.updateOne({ _id: req.params.id }, { $set: { status: 'Подтвержден' } });
 
 			res.status(201).json(order);
 		} catch (e) {
@@ -34,12 +45,10 @@ class OrderController {
 
 	async getByUserId(req, res) {
 		try {
-			if (req.params.id !== 'undefined') {
-				const orders = await Order.find({ userId: req.params.id })
-					.populate({ path: 'virtualTour' })
-					.populate({ path: 'virtualUser' });
-				return res.status(200).json(orders);
-			}
+			const orders = await Order.find({ user: req.params.id })
+				.populate({ path: 'virtualTour' })
+				.populate({ path: 'virtualUser' });
+			return res.status(200).json(orders);
 		} catch (e) {
 			console.log(e);
 			res.status(500).json(e);

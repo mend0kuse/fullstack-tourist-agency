@@ -1,5 +1,5 @@
-import cn from 'classnames';
 import { FC } from 'react';
+import styles from './TeamCard.module.scss';
 
 interface TeamCardProps {
 	className?: string;
@@ -12,10 +12,10 @@ export const TeamCard: FC<TeamCardProps> = (props) => {
 	const { img, job, name } = props;
 
 	return (
-		<div >
-			<img src={img} alt={name} />
-			<p>{name}</p>
-			<p>{job}</p>
+		<div className={styles.TeamCard} >
+			<img className={styles.img} src={img} alt={name} />
+			<p className={styles.name}>{name}</p>
+			<p className={styles.job}>{job}</p>
 		</div>
 	);
 };

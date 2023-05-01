@@ -21,6 +21,8 @@
 	transition: all 400ms ease-in-out;
 	border-radius: 50px;
 	transform: scale(0);
+	max-height: 90%;
+	overflow: hidden;
 	opacity: 0;
 	visibility: hidden;
 	width: auto;

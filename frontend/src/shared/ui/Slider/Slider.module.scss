@@ -34,3 +34,13 @@
 	column-gap: 30px;
 	margin-top: 60px;
 }
+
+.wrapper {
+	position: relative;
+}
+
+.topNav {
+	position: absolute;
+	right: 0;
+	top: -160px;
+}

@@ -12,3 +12,20 @@ body {
 #root {
 	min-height: 100%;
 }
+
+.rc-slider-rail,
+.rc-slider-track {
+	background-color: var(--primary-color) !important;
+}
+
+.rc-slider-handle {
+	background-color: var(--primary-color) !important;
+	border: none !important;
+	opacity: 1 !important;
+	box-shadow: none !important;
+}
+
+.rc-slider {
+	margin: 0 5px;
+	width: auto !important;
+}

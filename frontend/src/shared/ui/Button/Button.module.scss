@@ -2,6 +2,9 @@
 	border-radius: 50px;
 	display: inline-block;
 	transition: 0.2s linear all;
+	&:disabled {
+		cursor: not-allowed;
+	}
 }
 
 .primary {

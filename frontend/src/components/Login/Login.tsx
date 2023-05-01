@@ -19,14 +19,16 @@ export const Login: FC<LoginProps> = (props) => {
 	const { onLogin } = props
 
 	const { setUser } = useContext(UserContext)
-
-	const router = useNavigate()
+	const queryClient = useQueryClient()
 
 	const mutation = useMutation(authApi.login, {
 		onSuccess: (res) => {
-			setUser?.(res as User); onLogin()
+			setUser?.(res as User); 
+			onLogin()
+			// @ts-ignore
+			queryClient.invalidateQueries('orders')
 		},
-		onError: () => alert('Что-то пошло не так')
+		onError: (rej) => alert(rej)
 	})
 
 	const [username, setUsername] = useState('')

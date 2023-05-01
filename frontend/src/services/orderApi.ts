@@ -4,8 +4,11 @@ import { Order } from '../types/Order'
 export interface OrderPostProps {
 	userId?: string;
 	tourId?: string;
-	price?: string;
+	price?: number;
 	seats: number
+	status?: Order['status']
+	fio: string;
+	mail: string;
 }
 
 class OrderApi {
@@ -16,6 +19,19 @@ class OrderApi {
 
 		return data
 	}
+
+	async deleteOrder(id?: string) {
+		const { data } = await axios.delete<Order>('http://localhost:5000/orders/' + id)
+
+		return data
+	}
+
+	async confirmOrder(id?: string) {
+		const { data } = await axios.put<Order>('http://localhost:5000/orders/' + id)
+
+		return data
+	}
+
 	async getOrders() {
 		const { data } = await axios.get<Order[]>('http://localhost:5000/orders')
 		return data
